@@ -29,10 +29,10 @@ public class Test {
 	static ImageWriter writer3;
 
 	public static void main(String[] args) throws IOException {
-         
+         //point to the image file you want to scale here I am using dummy image path
 		f = new File(
 				"C:\\Users\\ad min\\Pictures\\20110213_jean-guihen-queyras-2.jpg");
-
+//you can specify the size in which you want your thumnails to be. Here I have specified a dimension of 200 by 200
 		temp = Thumbnails.of(f).size(200, 200).outputFormat("JPEG")
 				.antialiasing(Antialiasing.ON).keepAspectRatio(true)
 				.asBufferedImage();
@@ -46,8 +46,7 @@ public class Test {
 		if (getFormatName(f).equalsIgnoreCase("JPEG") == false) {
 			System.out
 					.println("file format is not jpeg so applying alternatives");
-			// http://www.mkyong.com/java/convert-png-to-jpeg-image-file-in-java/
-			// http://stackoverflow.com/questions/464825/converting-transparent-gif-png-to-jpeg-using-java
+						
 			BufferedImage bufferedImage = new BufferedImage(
 					temp.getWidth(null), temp.getHeight(null),
 					BufferedImage.TYPE_INT_RGB);
@@ -62,13 +61,14 @@ public class Test {
 		}
 
 		// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-		// http://stackoverflow.com/questions/464825/converting-transparent-gif-png-to-jpeg-using-java
+		
 		param2 = new JPEGImageWriteParam(null);
 		param2.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
 		// param.setCompressionQuality((float) 0.85);
 		param2.setCompressionQuality(1);// highest quality
 		its = ImageIO.getImageWritersBySuffix("jpg");
 		writer3 = its.next();
+		//point to the output folder you want to store the file to and also the file name along with the jpg extension
 		desto = new File(
 				"C:\\Users\\ad min\\Pictures\\thumbnail.jpg");
 		desto.delete();
